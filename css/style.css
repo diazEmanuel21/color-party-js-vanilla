@@ -1,0 +1,90 @@
+body {
+    background: #121920 ;
+    overflow: hidden;
+}
+
+.section-lamp {
+    overflow: hidden;
+    /* background: #121920 ; */
+    background-image: url(../assets/undraw_mello_otq1.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+}
+
+.lamp-container {
+    display: flex;
+}
+
+.lamp {
+    position: relative;
+    width: 150px;
+}
+
+.lamp-item {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.lamp-top {
+    top: 0;
+    width: calc(10px/2);
+    height: calc(100px/2);
+    background: #2d2d2d;
+    pointer-events: none;
+}
+
+.lamp-middle {
+    cursor: pointer;
+    width: calc(50px/2);
+    height: calc(30px/2);
+    background: #2d2d2d;
+    border-radius: calc(50px/2) calc(50px/2) 0 0;
+    top: calc(99px/2);
+}
+
+.lamp-bottom {
+    cursor: pointer;
+    width: calc(150px/2);
+    height: calc(80px/2);
+    background: #2d2d2d;
+    border-radius: calc(100px/2) calc(100px/2) 0 0;
+    top: calc(120px/2);
+}
+
+.lamp-light.on {
+    width: 150px;
+    height: 270px;
+    background: rgba(255, 248, 229, 0.5);
+    clip-path: polygon(25% 0, 75% 0, 99% 100%, 0% 100%);
+    top: calc(200px/2);
+    pointer-events: none;
+    animation: fadeIn .3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.lamp-light.off {
+    display: none;
+}
+
+.color-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
