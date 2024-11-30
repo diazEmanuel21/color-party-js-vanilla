@@ -7,6 +7,7 @@ const colorPicker = document.getElementById("color-picker");
 const applyColorBtn = document.getElementById("apply-color");
 const startPartyBtn = document.getElementById("start-party");
 const stopPartyBtn = document.getElementById("stop-party");
+const partyAudio = document.getElementById("party-audio");
 
 // Objeto para almacenar los colores de cada lámpara (inicialmente con un color predeterminado)
 const lampColors = {
@@ -33,10 +34,12 @@ function startParty() {
         return;
     }
 
-    const colors = Object.values(lampColors).filter(color => color !== "rgba(255, 248, 229, 0.5)");
+    // Iniciar la reproducción de la canción
+    partyAudio.play(); // Reproduce la música cuando se hace clic en "Start party"
 
+    // Resto de la lógica para el efecto de estrobo (cambiar el fondo de pantalla)
+    const colors = Object.values(lampColors).filter(color => color !== "rgba(255, 248, 229, 0.5)");
     let index = 0;
-    // Cambiar el fondo del body haciendo un efecto estrobo
     partyInterval = setInterval(() => {
         document.body.style.backgroundColor = colors[index];
         index = (index + 1) % colors.length;
@@ -45,8 +48,10 @@ function startParty() {
 
 // Función para detener el efecto estrobo
 function stopParty() {
-    clearInterval(partyInterval);
-    document.body.style.backgroundColor = "#121920"; // Restaurar el color de fondo original
+    clearInterval(partyInterval); // Detener el intervalo que cambia el fondo
+    document.body.style.backgroundColor = "#121920"; // Restaurar color de fondo original
+    partyAudio.pause(); // Pausar la música
+    partyAudio.currentTime = 0; // Reiniciar la canción a su inicio
 }
 
 // Función para convertir un valor hexadecimal en RGBA
@@ -172,7 +177,7 @@ function animateSongTitle() {
         ease: 'linear',
     });
     setTimeout(() => {
-        songTitle.textContent = '"Dancing Queen - ABBA"';
+        songTitle.textContent = '"Marshmello x Hamdi - Fired Up"';
         gsap.fromTo(songTitle, { x: '100%' }, { x: '-100%', duration: 10, repeat: -1, ease: 'linear' });
     }, 15000); // Cambia la canción después de 15 segundos
 }
