@@ -1,5 +1,6 @@
 const lamps = document.querySelectorAll('.lamp');
 const lightItems = document.querySelectorAll('.lamp-light');
+const songTitle = document.querySelector('.song-title');
 
 /* Transform from hex to rgb */
 function hexToRgb(hex) {
@@ -93,3 +94,19 @@ gsap.to(".lamp", {
     duration: 1.5, // Duración
     ease: "power1.inOut"
 });
+
+
+
+// Configura la animación para que sea fluida y en bucle infinito
+gsap.to(songTitle, {
+    x: '-100%', // Mueve el texto hacia la izquierda fuera de la pantalla
+    duration: 10, // Duración en segundos
+    repeat: -1, // Repetir infinitamente
+    ease: 'linear',
+});
+
+// Cambiar la canción después de unos segundos (puedes conectar esto a un reproductor en el futuro)
+setTimeout(() => {
+    songTitle.textContent = '"Dancing Queen - ABBA"';
+    gsap.fromTo(songTitle, { x: '100%' }, { x: '-100%', duration: 10, repeat: -1, ease: 'linear' });
+}, 15000); // Cambia la canción después de 15 segundos

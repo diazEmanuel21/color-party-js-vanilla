@@ -1,5 +1,5 @@
 body {
-    background: #121920 ;
+    background: #121920;
     overflow: hidden;
 }
 
@@ -7,6 +7,19 @@ body {
     overflow: hidden;
     /* background: #121920 ; */
     background-image: url(../assets/undraw_mello_otq1.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+}
+
+.section-people {
+    overflow: hidden;
+    /* background: #FFF ;    */
+    background-image: url(../assets/undraw_having_fun_re_vj4h.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -87,4 +100,82 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+}
+
+/* Nav-Menu */
+.offcanvas-body {
+    padding: 20px;
+}
+
+.menu-settings h6 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.color-menu .form-group {
+    margin-bottom: 15px;
+}
+
+.list-group-item {
+    border: none;
+    padding: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.list-group-item:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.02);
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* TITLE */
+.song-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    /* Esconde el texto fuera del área visible */
+    white-space: nowrap;
+    position: relative;
+    width: 200px;
+    /* Ajusta según el diseño deseado */
+    color: #fff;
+}
+
+.song-title {
+    display: inline-block;
+    animation: scrollText linear infinite;
+    /* Aplica animación CSS inicialmente */
+    font-size: 1rem;
+}
+
+/* GSAP sobrescribirá este keyframe, pero aquí está un fallback */
+@keyframes scrollText {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+/* Icon */
+.navbar-toggler i {
+    font-size: 1.5rem;
+    color: white;
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar-toggler:hover i {
+    transform: rotate(90deg);
+    color: #f8f9fa;
+    /* Cambia ligeramente el color al pasar el cursor */
 }
