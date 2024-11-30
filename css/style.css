@@ -1,6 +1,7 @@
 body {
     background: #121920;
     overflow: hidden;
+    transition: background-color 1s ease-in-out; /* Transición suave de color */
 }
 
 .section-lamp {
