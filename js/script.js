@@ -21,6 +21,9 @@ const lampColors = {
 // Variable para almacenar el ID del intervalo (para detenerlo después)
 let partyInterval;
 
+// Variable para almacenar el index de la ultima canción que sonó
+let lastIndex = null;
+
 // Función para verificar que haya al menos 3 colores distintos al predeterminado
 function validateColors() {
     const validColors = Object.values(lampColors).filter(color => color !== "rgba(255, 248, 229, 0.5)");
@@ -76,6 +79,23 @@ function applyLampColor() {
     const selectedLamp = document.getElementById(selectedLampId).querySelector(".lamp-light");
     const rgbColor = hexToRgb(selectedColor);
     selectedLamp.style.backgroundColor = rgbColor;
+
+    // Reproducir sonido aleatorio
+    playRandomSound();
+}
+
+// Función para reproducir un sonido aleatorio
+function playRandomSound() {
+    const audio = new Audio();
+    let randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * 7) + 1;
+    } while (randomIndex === lastIndex); // Asegurar que no se repita
+    lastIndex = randomIndex;
+
+    const soundPath = `assets/DJ/${String(randomIndex).padStart(2, '0')}.mp3`;
+    audio.src = soundPath;
+    audio.play();
 }
 
 // Función para escuchar el cambio de lámpara y actualizar el color en el color-picker
@@ -113,13 +133,24 @@ function animateLampBackground() {
 }
 
 // Animación de las lámparas (efecto colgante)
+/* EFECTO 1 */
+// function animateLampRotation() {
+//     gsap.to(".lamp", {
+//         rotation: 15,
+//         repeat: -1,
+//         yoyo: true,
+//         duration: 1.5,
+//         ease: "power1.inOut"
+//     });
+// }
+// Animación de las lámparas (efecto de luz de discoteca)
+/* EFECTO 2 */
 function animateLampRotation() {
     gsap.to(".lamp", {
-        rotation: 15,
+        rotationY: 360,
+        duration: 2,
         repeat: -1,
-        yoyo: true,
-        duration: 1.5,
-        ease: "power1.inOut"
+        ease: "linear",
     });
 }
 
