@@ -1,14 +1,13 @@
 // Obtener los elementos del DOM
-const lamps = document.querySelectorAll('.lamp');
-const lightItems = document.querySelectorAll('.lamp-light');
-const songTitle = document.querySelector('.song-title');
+const lamps = document.querySelectorAll(".lamp");
+const lightItems = document.querySelectorAll(".lamp-light");
+const songTitle = document.querySelector(".song-title");
 const lampSelect = document.getElementById("lamp-select");
 const colorPicker = document.getElementById("color-picker");
 const applyColorBtn = document.getElementById("apply-color");
 const startPartyBtn = document.getElementById("start-party");
 const stopPartyBtn = document.getElementById("stop-party");
 const partyAudio = document.getElementById("party-audio");
-
 // Objeto para almacenar los colores de cada lámpara (inicialmente con un color predeterminado)
 const lampColors = {
     lamp1: "rgba(255, 248, 229, 0.5)",
@@ -17,12 +16,16 @@ const lampColors = {
     lamp4: "rgba(255, 248, 229, 0.5)",
     lamp5: "rgba(255, 248, 229, 0.5)"
 };
-
 // Variable para almacenar el ID del intervalo (para detenerlo después)
 let partyInterval;
-
 // Variable para almacenar el index de la ultima canción que sonó
 let lastIndex = null;
+//Nombre de canción por defecto
+let songName = "Marshmello x Hamdi - Fired Up"
+
+
+
+
 
 // Función para verificar que haya al menos 3 colores distintos al predeterminado
 function validateColors() {
@@ -47,6 +50,11 @@ function startParty() {
         document.body.style.backgroundColor = colors[index];
         index = (index + 1) % colors.length;
     }, 500);
+
+    // Llamar a las funciones de animación
+    animateLampBackground();
+    animateLampRotation();
+    animateSongTitle();
 }
 
 // Función para detener el efecto estrobo
@@ -148,7 +156,7 @@ function animateLampBackground() {
 function animateLampRotation() {
     gsap.to(".lamp", {
         rotationY: 360,
-        duration: 2,
+        duration: 4,
         repeat: -1,
         ease: "linear",
     });
@@ -201,6 +209,8 @@ function animateLampToggle() {
 
 // Función para animar la canción con GSAP
 function animateSongTitle() {
+    songTitle.textContent = songName;
+
     gsap.to(songTitle, {
         x: '-100%',
         duration: 10,
@@ -208,14 +218,11 @@ function animateSongTitle() {
         ease: 'linear',
     });
     setTimeout(() => {
-        songTitle.textContent = '"Marshmello x Hamdi - Fired Up"';
         gsap.fromTo(songTitle, { x: '100%' }, { x: '-100%', duration: 10, repeat: -1, ease: 'linear' });
     }, 15000); // Cambia la canción después de 15 segundos
 }
 
-// Llamar a las funciones de animación
-animateLampBackground();
-animateLampRotation();
-animateLampFlicker();
+/* Apagar encender lampara */
 animateLampToggle();
-animateSongTitle();
+/* Efecto de titilo en luz */
+animateLampFlicker();

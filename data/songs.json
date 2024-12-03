@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Marshmello - Alone",
+        "path": "assets/music/song1.mp3",
+        "time": "3000"
+    },
+    {
+        "name": "Marshmello x Hamdi - Fired Up",
+        "path": "assets/music/song2.mp3",
+        "time": "1000"
+    },
+    {
+        "name": "SKRILLEX - Bangarang feat. Sirah",
+        "path": "assets/music/song3.mp3",
+        "time": "3000"
+    },
+    {
+        "name": "Pursuit of Happiness - Steve Aoki",
+        "path": "assets/music/song4.mp3",
+        "time": "6000"
+    },
+    {
+        "name": "Believing -  Anxverse x Noor",
+        "path": "assets/music/song5.mp3",
+        "time": "1000"
+    }
+]
