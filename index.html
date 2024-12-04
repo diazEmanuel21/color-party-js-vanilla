@@ -150,8 +150,17 @@
         </div>
     </section>
 
+
+
+    <!-- Progress  -->
+    <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0"
+        aria-valuemax="100">
+        <div id="progressBar" class="progress-bar text-bg-warning" style="width: 0%">0%</div>
+    </div>
     <!-- People section -->
     <section id="people-content" class="section-people"></section>
+
+
 
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
@@ -162,6 +171,7 @@
     <!-- JS File -->
     <script src="js/script.js" type="module"></script>
 
+    <!-- Range -->
     <script>
         const multiplier = 20; // Define el número de segundos por unidad
         const inputRange = document.getElementById("rangeInput"); // Referencia al input range
@@ -177,6 +187,37 @@
         inputRange.addEventListener("input", function () {
             updateRangeValue(this.value);
         });
+    </script>
+
+    <!-- Counter -->
+    <script>
+        let totalTime = 60; // 60 segundos
+        const progressBar = document.getElementById('progressBar');
+
+        // Función para iniciar la cuenta regresiva
+        function startCountdown() {
+            let remainingTime = totalTime;
+            const interval = setInterval(() => {
+                // Actualizar el texto de la cuenta regresiva
+                const minutes = Math.floor(remainingTime / 60);
+                const seconds = remainingTime % 60;
+
+                // Actualizar la barra de progreso
+                const progress = (remainingTime / totalTime) * 100;
+                progressBar.style.width = `${parseInt(progress)}%`;
+                progressBar.textContent = `${parseInt(progress)}%`;
+
+                // Si se llega a 0, termina la cuenta regresiva
+                if (remainingTime <= 0) {
+                    clearInterval(interval);
+                }
+
+                remainingTime--;
+            }, 1000); // Decrementa cada segundo
+        }
+
+        // Iniciar la cuenta regresiva
+        startCountdown();
     </script>
 </body>
 
