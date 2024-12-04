@@ -1,7 +1,8 @@
 body {
     background: #121920;
     overflow: hidden;
-    transition: background-color 1s ease-in-out; /* Transición suave de color */
+    transition: background-color 1s ease-in-out;
+    /* Transición suave de color */
 }
 
 .section-lamp {
@@ -99,26 +100,17 @@ body {
 .color-menu {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 10px;
 }
 
+.menu-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
 /* Nav-Menu */
-.offcanvas-body {
-    padding: 20px;
-}
-
-.menu-settings h6 {
-    font-size: 1rem;
-    margin-bottom: 15px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.color-menu .form-group {
-    margin-bottom: 15px;
-}
-
 .list-group-item {
     border: none;
     transition: all 0.2s ease-in-out;
@@ -127,44 +119,6 @@ body {
 .list-group-item:hover {
     transform: scale(1.02);
 }
-
-.btn-outline-secondary:hover {
-    background-color: #6c757d;
-    color: #fff;
-}
-
-/* TITLE */
-.song-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    overflow: hidden;
-    /* Esconde el texto fuera del área visible */
-    white-space: nowrap;
-    position: relative;
-    width: 200px;
-    /* Ajusta según el diseño deseado */
-    color: #fff;
-}
-
-.song-title {
-    display: inline-block;
-    animation: scrollText linear infinite;
-    /* Aplica animación CSS inicialmente */
-    font-size: 1rem;
-}
-
-/* GSAP sobrescribirá este keyframe, pero aquí está un fallback */
-@keyframes scrollText {
-    from {
-        transform: translateX(100%);
-    }
-
-    to {
-        transform: translateX(-100%);
-    }
-}
-
 
 /* Icon */
 .navbar-toggler i {
