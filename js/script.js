@@ -183,6 +183,9 @@ function applyLampColor() {
         return;
     }
 
+    // Reproducir sonido aleatorio
+    playRandomSound();
+
     const selectedLampId = lampSelect.value;
     const selectedColor = colorPicker.value;
     lampColors[selectedLampId] = selectedColor;
@@ -191,8 +194,11 @@ function applyLampColor() {
     const rgbColor = hexToRgb(selectedColor);
     selectedLamp.style.backgroundColor = rgbColor;
 
-    // Reproducir sonido aleatorio
-    playRandomSound();
+    /* Setear background en "Colores seleccionados" */
+    const idCurrentLamp = selectedLampId.split('lamp')[1]; //Obtener el id de la lampara actual
+    const colorLamp = document.getElementsByClassName(`color-lamp-${idCurrentLamp}`)[0]; 
+
+    colorLamp.style.backgroundColor = rgbColor;
 }
 
 // Función para reproducir un sonido aleatorio

@@ -111,6 +111,29 @@ body {
 }
 
 /* Nav-Menu */
+.content-colors-selected {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    align-items: center;
+    /* padding: 1em; */
+}
+
+.content-colors-selected>.item-color {
+    background-color: rgba(255, 248, 229, 0.5);
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.color-selector-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 .song-container {
     color: #FFF;
     text-transform: capitalize;
@@ -138,15 +161,22 @@ body {
 .navbar-toggler i {
     font-size: 1.5rem;
     color: white;
-    transition: transform 0.2s ease-in-out;
+    animation: rotateIcon 6s linear infinite;
+    /* Agrega la animación */
 }
 
-.navbar-toggler:hover i {
-    transform: rotate(90deg);
-    color: #f8f9fa;
-    /* Cambia ligeramente el color al pasar el cursor */
+/* Definimos la animación de rotación infinita */
+@keyframes rotateIcon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
+/* Progress */
 .progress-bar {
     background-color: #F9A826;
 }
