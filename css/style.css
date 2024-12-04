@@ -146,3 +146,7 @@ body {
     color: #f8f9fa;
     /* Cambia ligeramente el color al pasar el cursor */
 }
+
+.progress-bar {
+    background-color: #F9A826;
+}

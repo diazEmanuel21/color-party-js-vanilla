@@ -9,6 +9,12 @@ const startPartyBtn = document.getElementById("start-party");
 const stopPartyBtn = document.getElementById("stop-party");
 const partyAudio = document.getElementById("party-audio");
 const toastElement = document.getElementById("myToast");
+/* Animate references */
+let bgAnimation;
+let rotationLamp;
+let lampFlickerAnimations = [];
+// let rotationLamp;
+let titleSongAnimation;
 
 // Inicializa el toast
 const myToast = new bootstrap.Toast(toastElement);
@@ -30,6 +36,38 @@ let lastIndex = null;
 function validateColors() {
     const validColors = Object.values(lampColors).filter(color => color !== "rgba(255, 248, 229, 0.5)");
     return validColors.length >= 3;
+}
+
+// Función para iniciar la cuenta regresiva
+function startCountdown(totalTime) {
+    const progressBar = document.getElementById('progressBar');
+
+    let remainingTime = totalTime;
+    const interval = setInterval(() => {
+        // Actualizar la barra de progreso
+        const progress = (remainingTime / totalTime) * 100;
+        progressBar.style.width = `${parseInt(progress)}%`;
+        progressBar.textContent = `${parseInt(progress)}%`;
+
+        // Si se llega a 0, termina la cuenta regresiva
+        if (remainingTime <= 0) {
+            clearInterval(interval);
+            //Se para la fiesta
+            stopParty();
+        }
+
+        remainingTime--;
+    }, 1000); // Decrementa cada segundo
+}
+
+//Función encargada de obtener el tiempo proporcionado por el usuario
+function startCountdownTest() {
+    /* Extrae el valor del rango de tiempo */
+    const rangeValueDiv = document.getElementById("rangeValue");
+    const rangeText = rangeValueDiv.innerText || rangeValueDiv.textContent;
+    const totalTime = parseInt(rangeText.split(":")[1].trim(), 10);
+
+    startCountdown(totalTime)
 }
 
 // Función para iniciar la fiesta (efecto estrobo)
@@ -84,6 +122,9 @@ function startParty() {
     animateLampRotation();
     animateLampFlicker();
     animateSongTitle();
+
+    //llamar contador para progress
+    startCountdownTest();
 }
 
 // Función para detener el efecto estrobo
@@ -92,6 +133,14 @@ function stopParty() {
     document.body.style.backgroundColor = "#121920"; // Restaurar color de fondo original
     partyAudio.pause(); // Pausar la música
     partyAudio.currentTime = 0; // Reiniciar la canción a su inicio
+
+    /* Pausar animaciónes gsap */
+    bgAnimation.pause();
+    rotationLamp.pause();
+    lampFlickerAnimations.forEach(animation => {
+        animation.pause();
+    });
+    titleSongAnimation.pause();
 }
 
 // Función para convertir un valor hexadecimal en RGBA
@@ -180,10 +229,9 @@ startPartyBtn.addEventListener("click", startParty);
 stopPartyBtn.addEventListener("click", stopParty);
 
 // Animaciones utilizando GSAP
-
 // Animación para el fondo de la lámpara (movimiento suave de fondo)
 function animateLampBackground() {
-    gsap.to(".section-lamp", {
+    bgAnimation = gsap.to(".section-lamp", {
         x: "+=20",
         y: "+=10",
         duration: 1,
@@ -208,7 +256,7 @@ function animateLampBackground() {
 // Animación de las lámparas (efecto de luz de discoteca)
 /* EFECTO 2 */
 function animateLampRotation() {
-    gsap.to(".lamp", {
+    rotationLamp = gsap.to(".lamp", {
         rotationY: 360,
         duration: 4,
         repeat: -1,
@@ -219,7 +267,7 @@ function animateLampRotation() {
 // Animación de parpadeo de la luz de las lámparas (efecto de luz pulsante)
 function animateLampFlicker() {
     lightItems.forEach((light, index) => {
-        gsap.to(light, {
+        const flickerAnimation = gsap.to(light, {
             opacity: 0.7,
             duration: 0.5,
             repeat: -1,
@@ -227,6 +275,8 @@ function animateLampFlicker() {
             ease: "sine.inOut",
             delay: index * 0.5
         });
+
+        lampFlickerAnimations.push(flickerAnimation);
     });
 }
 
@@ -263,15 +313,12 @@ function animateLampToggle() {
 
 // Función para animar la canción con GSAP
 function animateSongTitle() {
-    gsap.to(songTitle, {
+    titleSongAnimation = gsap.to(songTitle, {
         x: '-100%',
         duration: 10,
         repeat: -1,
         ease: 'linear',
     });
-    setTimeout(() => {
-        gsap.fromTo(songTitle, { x: '100%' }, { x: '-100%', duration: 10, repeat: -1, ease: 'linear' });
-    }, 15000); // Cambia la canción después de 15 segundos
 }
 
 /* Apagar encender lampara */
