@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color party by Emanuel's</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../css/mediaplayer.css">
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <div class="container-actions">
+        <button onclick="goHome()">
+            Go party
+        </button>
+    </div>
+
+    <script src="../js/mediaplayer.js" type="module"></script>
+
+    <script>
+        const goHome = () => {
+            const songRaw = localStorage.getItem('song');
+
+            if (!songRaw) {
+                alert('¡Ups! Debes seleccionar una canción para poder continuar.');
+                return;
+            }
+
+            window.location.href = "../index.html"
+        }
+    </script>
+</body>
+
+</html>

@@ -8,6 +8,10 @@ const applyColorBtn = document.getElementById("apply-color");
 const startPartyBtn = document.getElementById("start-party");
 const stopPartyBtn = document.getElementById("stop-party");
 const partyAudio = document.getElementById("party-audio");
+const toastElement = document.getElementById("myToast");
+
+// Inicializa el toast
+const myToast = new bootstrap.Toast(toastElement);
 // Objeto para almacenar los colores de cada lámpara (inicialmente con un color predeterminado)
 const lampColors = {
     lamp1: "rgba(255, 248, 229, 0.5)",
@@ -21,9 +25,7 @@ let partyInterval;
 // Variable para almacenar el index de la ultima canción que sonó
 let lastIndex = null;
 //Nombre de canción por defecto
-let songName = "Marshmello x Hamdi - Fired Up"
-
-
+let songNameAudio = "Marshmello x Hamdi - Fired Up"
 
 
 
@@ -35,10 +37,38 @@ function validateColors() {
 
 // Función para iniciar la fiesta (efecto estrobo)
 function startParty() {
-    if (!validateColors()) {
-        alert("¡Selecciona más colores para iniciar la fiesta!");
+    // if (!validateColors()) {
+    //     myToast.show();
+    //     return;
+    // }
+    //Obtener current song del local-storage
+    const songRaw = localStorage.getItem('song');
+
+    if (!songRaw) {
+        Swal.fire({
+            title: '¡Ups! No has seleccionado una canción',
+            text: 'Por favor selecciona una canción para iniciar la fiesta.',
+            icon: 'info',
+            showCancelButton: true, // Agrega un segundo botón opcional si es necesario
+            confirmButtonText: 'Ver play list',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-secondary'
+            },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirige al usuario
+                window.location.href = './pages/media.html';
+            }
+        });
         return;
     }
+
+    const { files, songName } = JSON.parse(songRaw);
+    debugger;
+    partyAudio.src = files.song;
+    songNameAudio = songName;
 
     // Iniciar la reproducción de la canción
     partyAudio.play(); // Reproduce la música cuando se hace clic en "Start party"
@@ -209,16 +239,16 @@ function animateLampToggle() {
 
 // Función para animar la canción con GSAP
 function animateSongTitle() {
-    songTitle.textContent = songName;
+    partyAudio.textContent = songNameAudio;
 
-    gsap.to(songTitle, {
+    gsap.to(partyAudio, {
         x: '-100%',
         duration: 10,
         repeat: -1,
         ease: 'linear',
     });
     setTimeout(() => {
-        gsap.fromTo(songTitle, { x: '100%' }, { x: '-100%', duration: 10, repeat: -1, ease: 'linear' });
+        gsap.fromTo(partyAudio, { x: '100%' }, { x: '-100%', duration: 10, repeat: -1, ease: 'linear' });
     }, 15000); // Cambia la canción después de 15 segundos
 }
 

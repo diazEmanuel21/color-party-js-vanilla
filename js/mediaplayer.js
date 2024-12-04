@@ -222,7 +222,7 @@ function Playlist({ list, handleChangeMusic }) {
 
 function Loading() {
   return (
-    dom("div", { class: "loading flex-row" },
+    dom("div", { class: "loading" },
       dom("span", { class: "loading__progress" }, "0"),
       dom("span", null, "%")));
 

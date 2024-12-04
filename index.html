@@ -4,18 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <title>Color party by Emanuel's</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <!-- Font-aweasome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <!-- CSS File -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/mediaplayer.css">
 </head>
 
 <body>
+    <!-- Notify - toast -->
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div id="myToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    ¡Selecciona más colores para iniciar la fiesta!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
     <!-- Dialogs -->
     <!-- Full-screen Dialog -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -27,6 +39,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -39,7 +52,7 @@
     <!-- Config-page section -->
     <nav class="navbar fixed-top">
         <!-- Music for the party -->
-        <audio id="party-audio" preload="auto"></audio>
+        <audio class="text-light" id="party-audio" preload="auto"></audio>
 
         <div class="container-fluid">
             <a class="navbar-brand">
@@ -89,16 +102,17 @@
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                                     <span>Música</span>
-                                    <!-- Button trigger modal music -->
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                        class="btn btn-sm btn-outline-secondary" id="configButton">
+                                    <a type="button" class="btn btn-sm btn-outline-secondary" href="./pages/media.html">
                                         Configurar
-                                    </button>
+                                    </a>
                                 </li>
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                                     <span>Sistema de votos</span>
-                                    <button class="btn btn-sm btn-outline-secondary">Configurar</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                        class="btn btn-sm btn-outline-secondary" id="configButton">
+                                        Configurar
+                                    </button>
                                 </li>
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
@@ -153,18 +167,29 @@
         </div>
     </section>
 
-    <!-- Music selector -->
-    <div id="root"></div>
-
     <!-- People section -->
     <section id="people-content" class="section-people"></section>
+
+    <!-- Music selector -->
+    <hr class="text-secondary" />
+    <!-- <section id="media-player" class="media-player">
+        <div class="card text-center">
+            <div class="card-body">
+                <div id="root"></div>
+            </div>
+            <div class="card-footer text-body-secondary">
+                <a href="#DJ-content" class="btn btn-primary">Go party</a>
+            </div>
+        </div>
+    </section> -->
 
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js    "></script>
+    <!-- Sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- JS File -->
-    <script src="js/mediaplayer.js" type="module"></script>
     <script src="js/script.js" type="module"></script>
 </body>
 
