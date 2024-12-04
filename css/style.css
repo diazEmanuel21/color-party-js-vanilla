@@ -125,6 +125,15 @@ body {
     transform: scale(1.02);
 }
 
+.range-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+
 /* Icon */
 .navbar-toggler i {
     font-size: 1.5rem;

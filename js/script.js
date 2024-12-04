@@ -34,10 +34,10 @@ function validateColors() {
 
 // Función para iniciar la fiesta (efecto estrobo)
 function startParty() {
-    // if (!validateColors()) {
-    //     myToast.show();
-    //     return;
-    // }
+    if (!validateColors()) {
+        myToast.show();
+        return;
+    }
     //Obtener current song del local-storage
     const songRaw = localStorage.getItem('song');
     const indexSong = localStorage.getItem('index-song');

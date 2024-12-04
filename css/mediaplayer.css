@@ -513,7 +513,6 @@ body {
   background-color: transparent; 
   padding: 1em; /* Espaciado superior e inferior */
   text-align: center; /* Centra el contenido */
-  z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
 
 /* Estilo para el botón */

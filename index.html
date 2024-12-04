@@ -94,8 +94,12 @@
                                 </li>
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
-                                    <span>Cuenta regresiva</span>
-                                    <button class="btn btn-sm btn-outline-secondary">Configurar</button>
+                                    <div class="range-container">
+                                        <label for="rangeInput" class="form-label">Cuenta regresiva</label>
+                                        <input type="range" class="form-range" min="1" max="9" id="rangeInput"
+                                            oninput="updateRangeValue(this.value)">
+                                        <div id="rangeValue" class="mt-2">Tiempo(s): 20</div>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -157,6 +161,23 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- JS File -->
     <script src="js/script.js" type="module"></script>
+
+    <script>
+        const multiplier = 20; // Define el número de segundos por unidad
+        const inputRange = document.getElementById("rangeInput"); // Referencia al input range
+        const rangeValue = document.getElementById("rangeValue"); // Referencia al div donde se muestra el tiempo
+
+        // Función encargada de actualizar el rango proporcionado por el menú
+        function updateRangeValue(value) {
+            const totalTime = value * multiplier; // Calcula el tiempo total
+            rangeValue.innerText = `Tiempo(s): ${totalTime}`; // Actualiza el texto del div
+        }
+
+        // Agregar el evento 'input' para que se actualice mientras se mueve el slider
+        inputRange.addEventListener("input", function () {
+            updateRangeValue(this.value);
+        });
+    </script>
 </body>
 
 </html>
