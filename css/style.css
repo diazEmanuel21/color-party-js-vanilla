@@ -111,6 +111,11 @@ body {
 }
 
 /* Nav-Menu */
+.song-container {
+    color: #FFF;
+    text-transform: capitalize;
+}
+
 .list-group-item {
     border: none;
     transition: all 0.2s ease-in-out;

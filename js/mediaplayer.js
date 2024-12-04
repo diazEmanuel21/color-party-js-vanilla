@@ -49,7 +49,7 @@ function App({ songs }) {
     updateInfo(singerName_elmnt, songs[indexSong].artist);
     updateInfo(songName_elmnt, songs[indexSong].songName);
 
-    localStorage.setItem('song', JSON.stringify(songs[indexSong]));
+    localStorage.setItem('index-song', indexSong);
   }
 
   setBodyBg(songs[0].bg);
@@ -270,6 +270,9 @@ fetch(
   then(data => data.json()).
   then(result => {
     const songs = result.songs;
+    /* Inicialización de song en localstorage */
+    localStorage.setItem('song', JSON.stringify(songs));
+    localStorage.setItem('index-song', indexSong);
 
     function downloadTheFiles(media, input) {
       return Promise.all(
@@ -328,9 +331,6 @@ fetch(
 
         controlSubtitleAnimation(musicPlayerInfo_elmnt, songName_elmnt);
         controlSubtitleAnimation(musicPlayerInfo_elmnt, singerName_elmnt);
-
-        /* Inicialización de song en localstorage */
-        localStorage.setItem('song', JSON.stringify(songs[indexSong]));
       });
     });
   });
